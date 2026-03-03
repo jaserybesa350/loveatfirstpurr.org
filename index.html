@@ -3,174 +3,636 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>LOVE AT FIRST PURR INC | Cat Rescue Staten Island</title>
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <title>LOVE AT FIRST PURR | Staten Island Cat Rescue & Rehabilitation</title>
     <style>
-        :root {
-            --primary: #f08080; 
-            --dark: #2d3436;
-            --soft-bg: #fffbf0; 
-            --accent: #ffb8b8;
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Arial', sans-serif;
         }
 
-        body { font-family: 'Helvetica Neue', Arial, sans-serif; margin: 0; background: var(--soft-bg); color: var(--dark); line-height: 1.8; scroll-behavior: smooth; }
-        
-        nav { background: #fff; padding: 20px 8%; display: flex; justify-content: space-between; align-items: center; box-shadow: 0 4px 15px rgba(0,0,0,0.05); position: sticky; top: 0; z-index: 999; }
-        .logo { font-size: 1.6rem; font-weight: 800; color: var(--primary); letter-spacing: -1px; }
-        .nav-links { list-style: none; display: flex; gap: 25px; margin: 0; }
-        .nav-links a { text-decoration: none; color: var(--dark); font-weight: 600; font-size: 0.95rem; }
+        body {
+            line-height: 1.6;
+            color: #333;
+            background-color: #f8f9fa;
+        }
 
-        .hero { height: 60vh; background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('https://images.unsplash.com/photo-1514888286974-6c03e2ca1dba?q=80&w=2043&auto=format&fit=crop'); background-size: cover; background-position: center; display: flex; flex-direction: column; justify-content: center; align-items: center; color: white; text-align: center; padding: 0 20px; }
-        .hero h1 { font-size: 3.5rem; margin-bottom: 10px; }
+        a {
+            text-decoration: none;
+            color: #0066cc;
+            transition: color 0.3s ease;
+        }
 
-        section { padding: 80px 10%; border-bottom: 1px solid #eee; }
-        h2 { font-size: 2.2rem; color: var(--primary); margin-bottom: 25px; }
+        a:hover {
+            color: #004499;
+        }
 
-        .content-box { background: white; padding: 40px; border-radius: 15px; box-shadow: 0 5px 20px rgba(0,0,0,0.05); margin-bottom: 20px; }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
 
-        /* Patient Stories Styling */
-        .stories-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 40px; }
-        .story-card { background: #fff; border-radius: 20px; overflow: hidden; box-shadow: 0 10px 30px rgba(0,0,0,0.08); display: flex; flex-direction: column; }
-        .story-img { height: 280px; background-size: cover; background-position: center; position: relative; }
-        .status-tag { position: absolute; top: 15px; right: 15px; background: var(--primary); color: white; padding: 5px 15px; border-radius: 20px; font-size: 0.8rem; font-weight: bold; }
-        .story-padding { padding: 30px; flex-grow: 1; }
-        .story-padding h3 { color: var(--primary); margin-top: 0; font-size: 1.5rem; }
-        .story-padding hr { border: 0; border-top: 1px solid #eee; margin: 20px 0; }
-        .impact-text { font-size: 0.95rem; color: #666; font-style: italic; }
+        header {
+            background-color: #fff;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
 
-        .apply-card { background: var(--primary); color: white; padding: 40px; border-radius: 15px; text-align: center; margin-top: 40px; }
-        .apply-btn { display: inline-block; background: white; color: var(--primary); padding: 18px 40px; border-radius: 30px; text-decoration: none; font-weight: bold; margin-top: 20px; cursor: pointer; border: none; font-size: 1.1rem; box-shadow: 0 4px 10px rgba(0,0,0,0.1); }
-        .apply-btn:hover { transform: scale(1.05); background: #f9f9f9; }
+        .navbar {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 15px 0;
+        }
 
-        .contact-container { display: grid; grid-template-columns: 1fr 1fr; gap: 50px; }
-        input, textarea { width: 100%; padding: 15px; margin-bottom: 15px; border: 1px solid #ddd; border-radius: 8px; box-sizing: border-box; }
-        .btn-submit { background: var(--primary); color: white; border: none; padding: 15px 35px; border-radius: 8px; cursor: pointer; font-weight: bold; width: 100%; }
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 30px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
 
-        footer { background: #222; color: #fff; text-align: center; padding: 50px 10%; }
+        .nav-links a {
+            font-weight: 500;
+            text-transform: uppercase;
+            font-size: 14px;
+        }
 
-        #emailModal { display:none; position:fixed; top:50%; left:50%; transform:translate(-50%, -50%); background:white; padding:40px; border-radius:20px; box-shadow:0 0 50px rgba(0,0,0,0.3); z-index:1001; text-align:center; width: 80%; max-width: 500px; }
-        #modalOverlay { display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.5); z-index:1000; }
+        .contact-donate-btn {
+            background-color: #e63946;
+            color: white !important;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            display: inline-block;
+        }
+
+        .contact-donate-btn:hover {
+            background-color: #d62828;
+        }
+
+        .hero {
+            background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('https://images.unsplash.com/photo-1609074405294-355851aead3e?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D') center/cover no-repeat;
+            height: 80vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+            padding: 0 20px;
+            position: relative;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+        }
+
+        .hero-content h1 {
+            font-size: 48px;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.8);
+        }
+
+        .hero-content p {
+            font-size: 20px;
+            margin-bottom: 30px;
+            max-width: 800px;
+            text-align: center;
+            margin-left: auto;
+            margin-right: auto;
+            text-shadow: 1px 1px 3px rgba(0,0,0,0.8);
+        }
+
+        .hero-btn {
+            background-color: #e63946;
+            color: white;
+            padding: 15px 30px;
+            border-radius: 5px;
+            font-size: 18px;
+            font-weight: 600;
+            text-transform: uppercase;
+            border: none;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .hero-btn:hover {
+            background-color: #d62828;
+        }
+
+        .rescue-guide {
+            padding: 80px 0;
+            background-color: #fff;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 36px;
+            margin-bottom: 50px;
+            color: #2b2d42;
+        }
+
+        .guide-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            align-items: center;
+        }
+
+        .guide-text h3 {
+            font-size: 28px;
+            margin-bottom: 20px;
+            color: #2b2d42;
+        }
+
+        .guide-text p {
+            font-size: 18px;
+            margin-bottom: 15px;
+            color: #4a4e69;
+        }
+
+        .guide-text ul {
+            margin-left: 20px;
+            margin-bottom: 20px;
+        }
+
+        .guide-text li {
+            font-size: 18px;
+            margin-bottom: 10px;
+            color: #4a4e69;
+        }
+
+        .guide-img img {
+            width: 100%;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        .patient-stories {
+            padding: 80px 0;
+            background-color: #f1faee;
+        }
+
+        .stories-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .story-card {
+            background-color: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .story-card:hover {
+            transform: translateY(-10px);
+        }
+
+        .story-img img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+
+        .story-content {
+            padding: 20px;
+        }
+
+        .story-content h4 {
+            font-size: 20px;
+            margin-bottom: 10px;
+            color: #2b2d42;
+        }
+
+        .story-content p {
+            color: #4a4e69;
+            margin-bottom: 15px;
+        }
+
+        .donate-section {
+            padding: 80px 0;
+            background-color: #fff;
+            text-align: center;
+        }
+
+        .donate-content h3 {
+            font-size: 32px;
+            margin-bottom: 20px;
+            color: #2b2d42;
+        }
+
+        .donate-content p {
+            font-size: 18px;
+            max-width: 800px;
+            margin: 0 auto 30px;
+            color: #4a4e69;
+        }
+
+        .contact-info-box {
+            background-color: #f8f9fa;
+            padding: 40px;
+            border-radius: 10px;
+            max-width: 700px;
+            margin: 0 auto;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+        }
+
+        .contact-info-box h4 {
+            font-size: 24px;
+            margin-bottom: 25px;
+            color: #e63946;
+        }
+
+        .contact-info-box .contact-item {
+            font-size: 18px;
+            margin-bottom: 15px;
+            color: #4a4e69;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .about-us {
+            padding: 80px 0;
+            background-color: #e9ecef;
+        }
+
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            align-items: center;
+        }
+
+        .about-img img {
+            width: 100%;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        .about-text h3 {
+            font-size: 28px;
+            margin-bottom: 20px;
+            color: #2b2d42;
+        }
+
+        .about-text p {
+            font-size: 18px;
+            margin-bottom: 15px;
+            color: #4a4e69;
+        }
+
+        footer {
+            background-color: #2b2d42;
+            color: white;
+            padding: 60px 0 20px;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .footer-column h4 {
+            font-size: 20px;
+            margin-bottom: 20px;
+            color: #f8f9fa;
+        }
+
+        .footer-column ul {
+            list-style: none;
+        }
+
+        .footer-column li {
+            margin-bottom: 10px;
+        }
+
+        .footer-column a {
+            color: #adb5bd;
+        }
+
+        .footer-column a:hover {
+            color: white;
+        }
+
+        .footer-column p {
+            color: #adb5bd;
+            margin-bottom: 15px;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .social-links a {
+            color: white;
+            background-color: #4a4e69;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background-color 0.3s ease;
+        }
+
+        .social-links a:hover {
+            background-color: #e63946;
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid #4a4e69;
+            color: #adb5bd;
+            font-size: 14px;
+        }
+
+        @media (max-width: 992px) {
+            .guide-content, .about-content {
+                grid-template-columns: 1fr;
+            }
+            .hero-content h1 {
+                font-size: 36px;
+            }
+            .section-title {
+                font-size: 30px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                gap: 15px;
+            }
+            .hero-content h1 {
+                font-size: 28px;
+            }
+            .hero-content p {
+                font-size: 18px;
+            }
+            .contact-info-box {
+                padding: 25px;
+            }
+            .contact-info-box h4 {
+                font-size: 22px;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .navbar {
+                flex-direction: column;
+                gap: 15px;
+            }
+            .hero {
+                height: 70vh;
+            }
+            .hero-content h1 {
+                font-size: 24px;
+            }
+        }
     </style>
 </head>
 <body>
 
-    <div id="modalOverlay" onclick="closeModal()"></div>
-    <div id="emailModal">
-        <h3 style="color:var(--primary)">How to Apply</h3>
-        <p>Please send an email to:</p>
-        <h4 style="background:#f0f0f0; padding:10px; border-radius:5px;">contact@loveatfirstpurr.org</h4>
-        <p>With the subject: <b>Adoption Application Inquiry</b></p>
-        <button onclick="closeModal()" class="btn-submit">Close</button>
+<header>
+    <div class="container">
+        <nav class="navbar">
+            <ul class="nav-links">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#rescue-guide">Rescue Guide</a></li>
+                <li><a href="#patients">Rescue Stories</a></li>
+                <li><a href="#donate">Donate</a></li>
+                <li><a href="#about">About Us</a></li>
+                <li><a href="#contact">Contact</a></li>
+                <li><span class="contact-donate-btn" onclick="window.location.href='#donate'">Donate - Contact Us</span></li>
+            </ul>
+        </nav>
     </div>
+</header>
 
-    <nav>
-        <div class="logo">LOVE AT FIRST PURR</div>
-        <ul class="nav-links">
-            <li><a href="#home">Home</a></li>
-            <li><a href="#about">About Us</a></li>
-            <li><a href="#rescue">Rescue Guide</a></li>
-            <li><a href="#stories">Patient Stories</a></li>
-            <li><a href="#donate">Donate</a></li>
-            <li><a href="#contact">Contact</a></li>
-        </ul>
-    </nav>
-
-    <div id="home" class="hero">
-        <h1>Love At First Purr Inc.</h1>
-        <p>A second chance for every cat in Staten Island.</p>
+<section id="home" class="hero">
+    <div class="hero-content">
+        <h1>Rescuing Staten Island's Stray & Abandoned Cats</h1>
+        <p>LOVE AT FIRST PURR is a 501(c)(3) non-profit cat rescue organization dedicated to saving, rehabilitating, and rehoming cats in need across Staten Island, New York.</p>
+        <button class="hero-btn" onclick="window.location.href='#rescue-guide'">How to Help a Cat</button>
     </div>
+</section>
 
-    <section id="about">
-        <h2>Our Mission</h2>
-        <div class="content-box">
-            <p>Our organization is dedicated to improving the lives of stray and abandoned cats through rescue, recovery, socialization, and adoption programs. We often receive calls from community members who have no other resources for assistance with stray and abandoned cats, and we step in to help where others cannot. While we find permanent, loving homes for cats that are adoptable, we ensure that unadoptable cats are placed in safe, managed environments with ongoing care and support. Through these efforts, we aim to promote animal welfare, reduce the suffering of homeless cats, and foster a compassionate community.</p>
+<section id="rescue-guide" class="rescue-guide">
+    <div class="container">
+        <h2 class="section-title">Found a Stray or Injured Cat?</h2>
+        <div class="guide-content">
+            <div class="guide-text">
+                <h3>Step-by-Step Rescue Instructions</h3>
+                <p>If you’ve found a stray, injured, sick, or abandoned cat, follow these steps to provide safe, immediate care while you contact our rescue team:</p>
+                <ul>
+                    <li><strong>Assess safety first:</strong> Approach slowly to avoid scaring the cat. Check for visible injuries, limping, or distress.</li>
+                    <li><strong>Contain safely:</strong> Use a carrier or cardboard box. Line with a towel and keep the cat warm, quiet, and away from children/pets.</li>
+                    <li><strong>Do NOT feed without guidance:</strong> Human food and improper diet can severely harm stray and injured cats.</li>
+                    <li><strong>Call us immediately:</strong> Our rescue team will guide you through drop-off or emergency pickup.</li>
+                </ul>
+                <p><strong>Rescue Hotline:</strong> (718) 555-1234</p>
+            </div>
+            <div class="guide-img">
+                <img src="https://images.unsplash.com/photo-1615789591457-74a63395c990?q=80&w=1200" alt="Stray cat rescue guide">
+            </div>
         </div>
-    </section>
+    </div>
+</section>
 
-    <section id="rescue" style="background: #fff;">
-        <h2>Rescue Guide & Adoption Policy</h2>
-        <div class="content-box">
-            <p>Our adoption process is designed to ensure the best match between our cats and their future families. We start with a pre-screening application, followed by an interview (virtual or in-person) to learn more about the adopter’s experience and home environment. Once an applicant is deemed suitable, we arrange virtual or live visits with the cat and conduct a home check to ensure a safe environment. References may be checked as needed. If approved, the adopter completes an adoption agreement, and we provide medical records and post-adoption support to ensure a smooth transition. We are committed to placing our cats in loving, responsible homes and remain a resource for adopters after the adoption is finalized. If for any reason an adopter can no longer keep their cat, we require that the cat be returned to our rescue.</p>
-        </div>
-        
-        <div class="apply-card">
-            <h3>Ready to adopt?</h3>
-            <button onclick="handleApply()" class="apply-btn">Apply for Adoption Now</button>
-        </div>
-    </section>
-
-    <section id="stories">
-        <h2>Patient Stories</h2>
-        <p style="margin-bottom: 40px; font-size: 1.1rem; color: #666;">Every rescue is a journey of healing. Here are a few lives transformed by your support.</p>
-        
+<section id="patients" class="patient-stories">
+    <div class="container">
+        <h2 class="section-title">Our Rescue Stories</h2>
         <div class="stories-grid">
             <div class="story-card">
-                <div class="story-img" style="background-image: url('https://images.unsplash.com/photo-1548247416-ec66f4900b2e?q=80&w=600&auto=format&fit=crop');">
-                    <span class="status-tag">Successfully Adopted</span>
+                <div class="story-img">
+                    <img src="https://images.unsplash.com/photo-1573865526739-10659fec78a5?q=80&w=600" alt="Domestic Shorthair">
                 </div>
-                <div class="story-padding">
-                    <h3>The Miracle of Barnaby</h3>
-                    <p>Barnaby was discovered by a community member under a rusted vehicle, suffering from severe upper respiratory infection and extreme malnutrition. At just 6 weeks old, he had no other resources for help. Love At First Purr stepped in immediately.</p>
-                    <p>After three weeks of intensive veterinary care, nebulizer treatments, and round-the-clock syringe feeding, Barnaby's spirit began to shine. Today, he is the king of a loving home in Staten Island, proving that no cat is too small to fight for.</p>
-                    <hr>
-                    <p class="impact-text">"He went from a whisper of a kitten to a loud, purring companion."</p>
+                <div class="story-content">
+                    <h4>Domestic Shorthair</h4>
+                    <p>Rescued from abandonment near a grocery store, this cat was malnourished and fearful. After proper care and socialization, it was adopted into a loving permanent home.</p>
+                    <a href="#patients">Read Full Story →</a>
                 </div>
             </div>
 
             <div class="story-card">
-                <div class="story-img" style="background-image: url('https://images.unsplash.com/photo-1571566882372-1598d88aba92?q=80&w=600&auto=format&fit=crop');">
-                    <span class="status-tag">In Managed Care</span>
+                <div class="story-img">
+                    <img src="https://images.unsplash.com/photo-1711349171471-17af62170e05?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Tabby Cat">
                 </div>
-                <div class="story-padding">
-                    <h3>Finding Peace: Luna's Legacy</h3>
-                    <p>Not every cat is ready for a traditional home. Luna came to us with deep-seated trauma that made socialization nearly impossible. While many would have turned her away, our mission ensures that unadoptable cats are never abandoned.</p>
-                    <p>Luna now lives in one of our safe, managed sanctuary environments. She receives ongoing medical support and the quiet space she needs to feel secure. She may never sleep on a human's bed, but she will never spend another night in fear or hunger.</p>
-                    <hr>
-                    <p class="impact-text">Ensuring dignity and ongoing care for the "unadoptable."</p>
+                <div class="story-content">
+                    <h4>Tabby Cat</h4>
+                    <p>This tabby was hit by a car and suffered a broken leg. Our veterinary team performed surgery, and after months of rehabilitation, the cat made a full recovery and was adopted.</p>
+                    <a href="#patients">Read Full Story →</a>
+                </div>
+            </div>
+
+            <div class="story-card">
+                <div class="story-img">
+                    <img src="https://images.unsplash.com/photo-1548247416-ec66f4900b2e?q=80&w=600" alt="Mother Cat & Kittens">
+                </div>
+                <div class="story-content">
+                    <h4>Stray Mother Cat & Kittens</h4>
+                    <p>A stray mother cat and her newborn litter were found in a backyard. We provided a safe foster home, medical care, and found loving homes for all the kittens and mom.</p>
+                    <a href="#patients">Read Full Story →</a>
+                </div>
+            </div>
+
+            <div class="story-card">
+                <div class="story-img">
+                    <img src="https://images.unsplash.com/photo-1592194996308-7b43878e84a6?q=80&w=600" alt="Black Domestic Cat">
+                </div>
+                <div class="story-content">
+                    <h4>Black Domestic Cat</h4>
+                    <p>Found homeless during extreme winter weather, this cat was suffering from hypothermia and malnutrition. After emergency care, it recovered and was placed in a warm home.</p>
+                    <a href="#patients">Read Full Story →</a>
+                </div>
+            </div>
+
+            <div class="story-card">
+                <div class="story-img">
+                    <img src="https://images.unsplash.com/photo-1570018142481-5d8867ee2c7c?q=80&w=994&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Calico Cat">
+                </div>
+                <div class="story-content">
+                    <h4>Calico Cat</h4>
+                    <p>This calico was abandoned with a severe infection. After veterinary treatment and rehabilitation, she regained full health and was adopted by a caring family.</p>
+                    <a href="#patients">Read Full Story →</a>
+                </div>
+            </div>
+
+            <div class="story-card">
+                <div class="story-img">
+                    <img src="https://images.unsplash.com/photo-1622273509377-6393564cd651?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Feral Kitten">
+                </div>
+                <div class="story-content">
+                    <h4>Feral Kitten</h4>
+                    <p>Rescued from a feral colony, this kitten was scared and unsocialized. With patience and care, it became friendly and adoptable, now living happily as an indoor cat.</p>
+                    <a href="#patients">Read Full Story →</a>
                 </div>
             </div>
         </div>
-    </section>
+    </div>
+</section>
 
-    <section id="donate">
-        <div class="contact-container">
-            <div>
-                <h2>Donate</h2>
-                <p>Your contributions are the lifeline for our rescue operations. They fund medical records, surgeries, socialization programs, and the maintenance of sanctuary environments for cats like Luna.</p>
-                <p><strong>Contact us below to learn how you can donate via Zelle, check, or supplies.</strong></p>
-                
-                <h2 id="contact">Contact Us</h2>
-                <p><i class="fas fa-envelope"></i> <b>contact@loveatfirstpurr.org</b></p>
-                <p><i class="fas fa-map-marker-alt"></i> 27 Wakefield Road, Staten Island, NY 10312</p>
+<section id="donate" class="donate-section">
+    <div class="container">
+        <h2 class="section-title">Support Our Rescue Work</h2>
+        <div class="donate-content">
+            <h3>Your Support Saves Cat Lives</h3>
+            <p>LOVE AT FIRST PURR relies entirely on community support to fund rescue, medical care, food, shelter, and adoption programs for stray and abandoned cats in Staten Island.</p>
+            
+            <div class="contact-info-box">
+                <h4>For Donations & Support, Please Contact Us</h4>
+                <div class="contact-item">
+                    <span>📞</span>
+                    <span>Rescue & Donation Line: (718) 555-1234</span>
+                </div>
+                <div class="contact-item">
+                    <span>📧</span>
+                    <span>Email: contact@loveatfirstpurr.org</span>
+                </div>
+                <div class="contact-item">
+                    <span>📍</span>
+                    <span>27 Wakefield Road, Staten Island, NY 10312</span>
+                </div>
             </div>
-            <div>
-                <form onsubmit="event.preventDefault(); handleApply();">
-                    <input type="text" placeholder="Your Name" required>
-                    <input type="email" placeholder="Your Email" required>
-                    <textarea rows="5" placeholder="Tell us how you'd like to help..." required></textarea>
-                    <button type="submit" class="btn-submit">Send Message</button>
+            
+            <p style="margin-top:30px;"><strong>Tax Information:</strong> LOVE AT FIRST PURR is a 501(c)(3) nonprofit organization (EIN: 33-2550894). All donations are tax-deductible to the extent allowed by law.</p>
+        </div>
+    </div>
+</section>
+
+<section id="about" class="about-us">
+    <div class="container">
+        <h2 class="section-title">About LOVE AT FIRST PURR</h2>
+        <div class="about-content">
+            <div class="about-img">
+                <img src="https://images.unsplash.com/photo-1707883485770-790a7891cea1?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Cat rescue center">
+            </div>
+            <div class="about-text">
+                <h3>Our Mission & Purpose</h3>
+                <p>Our organization is dedicated to improving the lives of stray and abandoned cats through rescue, recovery, socialization, and adoption programs. We often receive calls from community members who have no other resources for assistance with stray and abandoned cats, and we step in to help where others cannot.</p>
+                <p>While we find permanent, loving homes for cats that are adoptable, we ensure that unadoptable cats are placed in safe, managed environments with ongoing care and support.</p>
+                <p>Through these efforts, we aim to promote animal welfare, reduce the suffering of homeless cats, and foster a compassionate community.</p>
+                <p><strong>Location:</strong> 27 Wakefield Road, Staten Island, NY 10312</p>
+                <p><strong>EIN:</strong> 33-2550894 | 501(c)(3) Non-Profit</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<footer id="contact">
+    <div class="container">
+        <div class="footer-content">
+            <div class="footer-column">
+                <h4>Quick Links</h4>
+                <ul>
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#rescue-guide">Rescue Guide</a></li>
+                    <li><a href="#patients">Rescue Stories</a></li>
+                    <li><a href="#donate">Donate</a></li>
+                    <li><a href="#about">About Us</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h4>Contact Us</h4>
+                <p>LOVE AT FIRST PURR</p>
+                <p>27 Wakefield Road, Staten Island, NY 10312</p>
+                <p>Phone: (718) 555-1234</p>
+                <p>Email: contact@loveatfirstpurr.org</p>
+                <p>Hours: 10 AM - 6 PM Daily</p>
+            </div>
+            <div class="footer-column">
+                <h4>Get Involved</h4>
+                <ul>
+                    <li><a href="#volunteer">Volunteer</a></li>
+                    <li><a href="#foster">Foster a Cat</a></li>
+                    <li><a href="#adopt">Adopt</a></li>
+                    <li><a href="#events">Community Events</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h4>Stay Connected</h4>
+                <p>Subscribe for updates on rescues, adoptions, and volunteer opportunities.</p>
+                <form>
+                    <input type="email" placeholder="Your Email Address" style="padding:10px;width:100%;border-radius:5px;border:none;margin-bottom:10px;">
+                    <button type="submit" style="background-color:#e63946;color:white;padding:10px;border:none;border-radius:5px;width:100%;cursor:pointer;">Subscribe</button>
                 </form>
+                <div class="social-links">
+                    <a href="#facebook">F</a>
+                    <a href="#instagram">I</a>
+                    <a href="#twitter">T</a>
+                    <a href="#youtube">Y</a>
+                </div>
             </div>
         </div>
-    </section>
+        <div class="copyright">
+            <p>&copy; 2026 LOVE AT FIRST PURR | Staten Island Cat Rescue | EIN: 33-2550894 | All Rights Reserved</p>
+        </div>
+    </div>
+</footer>
 
-    <footer>
-        <p>&copy; 2026 LOVE AT FIRST PURR INC.</p>
-        <p>Staten Island's Compassionate Cat Rescue</p>
-    </footer>
+<script>
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+            e.preventDefault();
+            document.querySelector(this.getAttribute('href')).scrollIntoView({ behavior: 'smooth' });
+        });
+    });
+</script>
 
-    <script>
-        function handleApply() {
-            window.location.href = "mailto:contact@loveatfirstpurr.org?subject=Adoption or Inquiry";
-            setTimeout(function() {
-                document.getElementById('emailModal').style.display = 'block';
-                document.getElementById('modalOverlay').style.display = 'block';
-            }, 500);
-        }
-        function closeModal() {
-            document.getElementById('emailModal').style.display = 'none';
-            document.getElementById('modalOverlay').style.display = 'none';
-        }
-    </script>
 </body>
 </html>
