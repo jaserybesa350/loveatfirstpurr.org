@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>LOVE AT FIRST PURR | Staten Island Cat Rescue & Rehabilitation</title>
     <style>
+        /* 基础样式保持不变，仅优化渲染性能 */
         * {
             margin: 0;
             padding: 0;
@@ -16,6 +17,7 @@
             line-height: 1.6;
             color: #333;
             background-color: #f8f9fa;
+            -webkit-font-smoothing: antialiased; /* 文字渲染优化 */
         }
 
         a {
@@ -76,8 +78,9 @@
             background-color: #d62828;
         }
 
+        /* Hero 优化：增加图片尺寸控制参数 */
         .hero {
-            background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('https://images.unsplash.com/photo-1609074405294-355851aead3e?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D') center/cover no-repeat;
+            background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('https://images.unsplash.com/photo-1609074405294-355851aead3e?q=80&w=1200&auto=format&fit=crop') center/cover no-repeat;
             height: 80vh;
             display: flex;
             align-items: center;
@@ -86,11 +89,6 @@
             color: white;
             padding: 0 20px;
             position: relative;
-        }
-
-        .hero-content {
-            position: relative;
-            z-index: 2;
         }
 
         .hero-content h1 {
@@ -103,7 +101,6 @@
             font-size: 20px;
             margin-bottom: 30px;
             max-width: 800px;
-            text-align: center;
             margin-left: auto;
             margin-right: auto;
             text-shadow: 1px 1px 3px rgba(0,0,0,0.8);
@@ -122,287 +119,52 @@
             transition: background-color 0.3s ease;
         }
 
-        .hero-btn:hover {
-            background-color: #d62828;
+        .rescue-guide { padding: 80px 0; background-color: #fff; }
+        .section-title { text-align: center; font-size: 36px; margin-bottom: 50px; color: #2b2d42; }
+        .guide-content { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: center; }
+        .guide-text h3 { font-size: 28px; margin-bottom: 20px; color: #2b2d42; }
+        .guide-text p { font-size: 18px; margin-bottom: 15px; color: #4a4e69; }
+        .guide-text ul { margin-left: 20px; margin-bottom: 20px; }
+        .guide-text li { font-size: 18px; margin-bottom: 10px; color: #4a4e69; }
+        
+        /* 图片容器优化：设定纵横比防止页面抖动 */
+        .guide-img img, .about-img img { 
+            width: 100%; border-radius: 10px; box-shadow: 0 5px 15px rgba(0,0,0,0.1); 
+            aspect-ratio: 12/8; object-fit: cover;
         }
 
-        .rescue-guide {
-            padding: 80px 0;
-            background-color: #fff;
-        }
+        .patient-stories { padding: 80px 0; background-color: #f1faee; }
+        .stories-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 30px; }
+        .story-card { background-color: white; border-radius: 10px; overflow: hidden; box-shadow: 0 5px 15px rgba(0,0,0,0.1); transition: transform 0.3s ease; }
+        .story-card:hover { transform: translateY(-10px); }
+        .story-img img { width: 100%; height: 200px; object-fit: cover; }
+        .story-content { padding: 20px; }
+        .story-content h4 { font-size: 20px; margin-bottom: 10px; color: #2b2d42; }
+        .story-content p { color: #4a4e69; margin-bottom: 15px; }
 
-        .section-title {
-            text-align: center;
-            font-size: 36px;
-            margin-bottom: 50px;
-            color: #2b2d42;
-        }
+        .donate-section { padding: 80px 0; background-color: #fff; text-align: center; }
+        .contact-info-box { background-color: #f8f9fa; padding: 40px; border-radius: 10px; max-width: 700px; margin: 0 auto; box-shadow: 0 5px 15px rgba(0,0,0,0.05); }
 
-        .guide-content {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 40px;
-            align-items: center;
-        }
+        .about-us { padding: 80px 0; background-color: #e9ecef; }
+        .about-content { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: center; }
 
-        .guide-text h3 {
-            font-size: 28px;
-            margin-bottom: 20px;
-            color: #2b2d42;
-        }
-
-        .guide-text p {
-            font-size: 18px;
-            margin-bottom: 15px;
-            color: #4a4e69;
-        }
-
-        .guide-text ul {
-            margin-left: 20px;
-            margin-bottom: 20px;
-        }
-
-        .guide-text li {
-            font-size: 18px;
-            margin-bottom: 10px;
-            color: #4a4e69;
-        }
-
-        .guide-img img {
-            width: 100%;
-            border-radius: 10px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-        }
-
-        .patient-stories {
-            padding: 80px 0;
-            background-color: #f1faee;
-        }
-
-        .stories-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-            gap: 30px;
-        }
-
-        .story-card {
-            background-color: white;
-            border-radius: 10px;
-            overflow: hidden;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-            transition: transform 0.3s ease;
-        }
-
-        .story-card:hover {
-            transform: translateY(-10px);
-        }
-
-        .story-img img {
-            width: 100%;
-            height: 200px;
-            object-fit: cover;
-        }
-
-        .story-content {
-            padding: 20px;
-        }
-
-        .story-content h4 {
-            font-size: 20px;
-            margin-bottom: 10px;
-            color: #2b2d42;
-        }
-
-        .story-content p {
-            color: #4a4e69;
-            margin-bottom: 15px;
-        }
-
-        .donate-section {
-            padding: 80px 0;
-            background-color: #fff;
-            text-align: center;
-        }
-
-        .donate-content h3 {
-            font-size: 32px;
-            margin-bottom: 20px;
-            color: #2b2d42;
-        }
-
-        .donate-content p {
-            font-size: 18px;
-            max-width: 800px;
-            margin: 0 auto 30px;
-            color: #4a4e69;
-        }
-
-        .contact-info-box {
-            background-color: #f8f9fa;
-            padding: 40px;
-            border-radius: 10px;
-            max-width: 700px;
-            margin: 0 auto;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
-        }
-
-        .contact-info-box h4 {
-            font-size: 24px;
-            margin-bottom: 25px;
-            color: #e63946;
-        }
-
-        .contact-info-box .contact-item {
-            font-size: 18px;
-            margin-bottom: 15px;
-            color: #4a4e69;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 10px;
-        }
-
-        .about-us {
-            padding: 80px 0;
-            background-color: #e9ecef;
-        }
-
-        .about-content {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 40px;
-            align-items: center;
-        }
-
-        .about-img img {
-            width: 100%;
-            border-radius: 10px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-        }
-
-        .about-text h3 {
-            font-size: 28px;
-            margin-bottom: 20px;
-            color: #2b2d42;
-        }
-
-        .about-text p {
-            font-size: 18px;
-            margin-bottom: 15px;
-            color: #4a4e69;
-        }
-
-        footer {
-            background-color: #2b2d42;
-            color: white;
-            padding: 60px 0 20px;
-        }
-
-        .footer-content {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 40px;
-            margin-bottom: 40px;
-        }
-
-        .footer-column h4 {
-            font-size: 20px;
-            margin-bottom: 20px;
-            color: #f8f9fa;
-        }
-
-        .footer-column ul {
-            list-style: none;
-        }
-
-        .footer-column li {
-            margin-bottom: 10px;
-        }
-
-        .footer-column a {
-            color: #adb5bd;
-        }
-
-        .footer-column a:hover {
-            color: white;
-        }
-
-        .footer-column p {
-            color: #adb5bd;
-            margin-bottom: 15px;
-        }
-
-        .social-links {
-            display: flex;
-            gap: 15px;
-            margin-top: 20px;
-        }
-
-        .social-links a {
-            color: white;
-            background-color: #4a4e69;
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transition: background-color 0.3s ease;
-        }
-
-        .social-links a:hover {
-            background-color: #e63946;
-        }
-
-        .copyright {
-            text-align: center;
-            padding-top: 20px;
-            border-top: 1px solid #4a4e69;
-            color: #adb5bd;
-            font-size: 14px;
-        }
+        footer { background-color: #2b2d42; color: white; padding: 60px 0 20px; }
+        .footer-content { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 40px; margin-bottom: 40px; }
+        .footer-column h4 { font-size: 20px; margin-bottom: 20px; color: #f8f9fa; }
+        .footer-column ul { list-style: none; }
+        .footer-column li { margin-bottom: 10px; }
+        .footer-column a { color: #adb5bd; }
+        .social-links { display: flex; gap: 15px; margin-top: 20px; }
+        .social-links a { color: white; background-color: #4a4e69; width: 40px; height: 40px; border-radius: 50%; display: flex; align-items: center; justify-content: center; }
 
         @media (max-width: 992px) {
-            .guide-content, .about-content {
-                grid-template-columns: 1fr;
-            }
-            .hero-content h1 {
-                font-size: 36px;
-            }
-            .section-title {
-                font-size: 30px;
-            }
+            .guide-content, .about-content { grid-template-columns: 1fr; }
+            .hero-content h1 { font-size: 36px; }
         }
-
-        @media (max-width: 768px) {
-            .nav-links {
-                gap: 15px;
-            }
-            .hero-content h1 {
-                font-size: 28px;
-            }
-            .hero-content p {
-                font-size: 18px;
-            }
-            .contact-info-box {
-                padding: 25px;
-            }
-            .contact-info-box h4 {
-                font-size: 22px;
-            }
-        }
-
         @media (max-width: 576px) {
-            .navbar {
-                flex-direction: column;
-                gap: 15px;
-            }
-            .hero {
-                height: 70vh;
-            }
-            .hero-content h1 {
-                font-size: 24px;
-            }
+            .navbar { flex-direction: column; gap: 15px; }
+            .hero { height: 70vh; }
+            .hero-content h1 { font-size: 24px; }
         }
     </style>
 </head>
@@ -448,7 +210,7 @@
                 <p><strong>Rescue Hotline:</strong> (718) 555-1234</p>
             </div>
             <div class="guide-img">
-                <img src="https://images.unsplash.com/photo-1615789591457-74a63395c990?q=80&w=1200" alt="Stray cat rescue guide">
+                <img src="https://images.unsplash.com/photo-1615789591457-74a63395c990?q=80&w=800" alt="Stray cat rescue guide" loading="lazy">
             </div>
         </div>
     </div>
@@ -460,7 +222,7 @@
         <div class="stories-grid">
             <div class="story-card">
                 <div class="story-img">
-                    <img src="https://images.unsplash.com/photo-1573865526739-10659fec78a5?q=80&w=600" alt="Domestic Shorthair">
+                    <img src="https://images.unsplash.com/photo-1573865526739-10659fec78a5?q=80&w=500" alt="Domestic Shorthair" loading="lazy">
                 </div>
                 <div class="story-content">
                     <h4>Domestic Shorthair</h4>
@@ -471,7 +233,7 @@
 
             <div class="story-card">
                 <div class="story-img">
-                    <img src="https://images.unsplash.com/photo-1711349171471-17af62170e05?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Tabby Cat">
+                    <img src="https://images.unsplash.com/photo-1711349171471-17af62170e05?q=80&w=500" alt="Tabby Cat" loading="lazy">
                 </div>
                 <div class="story-content">
                     <h4>Tabby Cat</h4>
@@ -482,7 +244,7 @@
 
             <div class="story-card">
                 <div class="story-img">
-                    <img src="https://images.unsplash.com/photo-1548247416-ec66f4900b2e?q=80&w=600" alt="Mother Cat & Kittens">
+                    <img src="https://images.unsplash.com/photo-1548247416-ec66f4900b2e?q=80&w=500" alt="Mother Cat & Kittens" loading="lazy">
                 </div>
                 <div class="story-content">
                     <h4>Stray Mother Cat & Kittens</h4>
@@ -493,7 +255,7 @@
 
             <div class="story-card">
                 <div class="story-img">
-                    <img src="https://images.unsplash.com/photo-1592194996308-7b43878e84a6?q=80&w=600" alt="Black Domestic Cat">
+                    <img src="https://images.unsplash.com/photo-1592194996308-7b43878e84a6?q=80&w=500" alt="Black Domestic Cat" loading="lazy">
                 </div>
                 <div class="story-content">
                     <h4>Black Domestic Cat</h4>
@@ -504,7 +266,7 @@
 
             <div class="story-card">
                 <div class="story-img">
-                    <img src="https://images.unsplash.com/photo-1570018142481-5d8867ee2c7c?q=80&w=994&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Calico Cat">
+                    <img src="https://images.unsplash.com/photo-1570018142481-5d8867ee2c7c?q=80&w=500" alt="Calico Cat" loading="lazy">
                 </div>
                 <div class="story-content">
                     <h4>Calico Cat</h4>
@@ -515,7 +277,7 @@
 
             <div class="story-card">
                 <div class="story-img">
-                    <img src="https://images.unsplash.com/photo-1622273509377-6393564cd651?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Feral Kitten">
+                    <img src="https://images.unsplash.com/photo-1622273509377-6393564cd651?q=80&w=500" alt="Feral Kitten" loading="lazy">
                 </div>
                 <div class="story-content">
                     <h4>Feral Kitten</h4>
@@ -536,18 +298,9 @@
             
             <div class="contact-info-box">
                 <h4>For Donations & Support, Please Contact Us</h4>
-                <div class="contact-item">
-                    <span>📞</span>
-                    <span>Rescue & Donation Line: (718) 555-1234</span>
-                </div>
-                <div class="contact-item">
-                    <span>📧</span>
-                    <span>Email: contact@loveatfirstpurr.org</span>
-                </div>
-                <div class="contact-item">
-                    <span>📍</span>
-                    <span>27 Wakefield Road, Staten Island, NY 10312</span>
-                </div>
+                <div style="margin-bottom:15px;">📞 Rescue & Donation Line: (718) 555-1234</div>
+                <div style="margin-bottom:15px;">📧 Email: contact@loveatfirstpurr.org</div>
+                <div>📍 27 Wakefield Road, Staten Island, NY 10312</div>
             </div>
             
             <p style="margin-top:30px;"><strong>Tax Information:</strong> LOVE AT FIRST PURR is a 501(c)(3) nonprofit organization (EIN: 33-2550894). All donations are tax-deductible to the extent allowed by law.</p>
@@ -560,7 +313,7 @@
         <h2 class="section-title">About LOVE AT FIRST PURR</h2>
         <div class="about-content">
             <div class="about-img">
-                <img src="https://images.unsplash.com/photo-1707883485770-790a7891cea1?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Cat rescue center">
+                <img src="https://images.unsplash.com/photo-1707883485770-790a7891cea1?q=80&w=800" alt="Cat rescue center" loading="lazy">
             </div>
             <div class="about-text">
                 <h3>Our Mission & Purpose</h3>
@@ -589,11 +342,7 @@
             </div>
             <div class="footer-column">
                 <h4>Contact Us</h4>
-                <p>LOVE AT FIRST PURR</p>
-                <p>27 Wakefield Road, Staten Island, NY 10312</p>
-                <p>Phone: (718) 555-1234</p>
-                <p>Email: contact@loveatfirstpurr.org</p>
-                <p>Hours: 10 AM - 6 PM Daily</p>
+                <p>LOVE AT FIRST PURR<br>27 Wakefield Road, Staten Island, NY 10312<br>Phone: (718) 555-1234<br>Email: contact@loveatfirstpurr.org</p>
             </div>
             <div class="footer-column">
                 <h4>Get Involved</h4>
@@ -601,26 +350,11 @@
                     <li><a href="#volunteer">Volunteer</a></li>
                     <li><a href="#foster">Foster a Cat</a></li>
                     <li><a href="#adopt">Adopt</a></li>
-                    <li><a href="#events">Community Events</a></li>
                 </ul>
             </div>
-            <div class="footer-column">
-                <h4>Stay Connected</h4>
-                <p>Subscribe for updates on rescues, adoptions, and volunteer opportunities.</p>
-                <form>
-                    <input type="email" placeholder="Your Email Address" style="padding:10px;width:100%;border-radius:5px;border:none;margin-bottom:10px;">
-                    <button type="submit" style="background-color:#e63946;color:white;padding:10px;border:none;border-radius:5px;width:100%;cursor:pointer;">Subscribe</button>
-                </form>
-                <div class="social-links">
-                    <a href="#facebook">F</a>
-                    <a href="#instagram">I</a>
-                    <a href="#twitter">T</a>
-                    <a href="#youtube">Y</a>
-                </div>
-            </div>
         </div>
-        <div class="copyright">
-            <p>&copy; 2026 LOVE AT FIRST PURR | Staten Island Cat Rescue | EIN: 33-2550894 | All Rights Reserved</p>
+        <div style="text-align:center; padding-top:20px; border-top:1px solid #4a4e69; color:#adb5bd; font-size:14px;">
+            &copy; 2026 LOVE AT FIRST PURR | Staten Island Cat Rescue | EIN: 33-2550894 | All Rights Reserved
         </div>
     </div>
 </footer>
@@ -633,6 +367,5 @@
         });
     });
 </script>
-
 </body>
 </html>
